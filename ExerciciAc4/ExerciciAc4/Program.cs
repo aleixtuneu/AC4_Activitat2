@@ -1,36 +1,66 @@
 ﻿using System;
 namespace Ac4
 {
-    // Ex1
+    // Ex2
     public class Program
     {
         public static void Main()
         {
-            const string MsgIntroduceNumber = "Introdueix un número enter: ";
-            const string MsgError = "Error. El valor ha de ser un número enter.";
-            const string MsgOk = "El valor introduït està dins el rang [5-100].";
-            const string MsgKo = "EL valor introduït no està dins el rang [5-100].";
+            const string MsgIntroduceFirstNumber = "Introdueix el primer número: ";
+            const string MsgIntroduceSecondNumber = "Introdueix el segon número: ";
+            const string MsgIntroduceThirdNumber = "Introdueix el tercer número: ";
+            const string MsgError = "Error. El valor ha de ser un enter.";
+            const string MsgResult = "El número més gran és: {0}";
 
-            int numberInput = 0;
+            int numOne = 0;
+            int numTwo = 0;
+            int numThree = 0;
 
-            Console.WriteLine(MsgIntroduceNumber);
-            while (!int.TryParse(Console.ReadLine(), out numberInput))
+            Console.WriteLine(MsgIntroduceFirstNumber);
+            while (!int.TryParse(Console.ReadLine(), out numOne))
             {
                 Console.WriteLine();
                 Console.WriteLine(MsgError);
             }
             Console.WriteLine();
 
-            Console.WriteLine(IsInRange(numberInput) ? MsgOk : MsgKo);
+            Console.WriteLine(MsgIntroduceSecondNumber);
+            while (!int.TryParse(Console.ReadLine(), out numTwo))
+            {
+                Console.WriteLine();
+                Console.WriteLine(MsgError);
+            }
+            Console.WriteLine();
+
+            Console.WriteLine(MsgIntroduceThirdNumber);
+            while (!int.TryParse(Console.ReadLine(), out numThree))
+            {
+                Console.WriteLine();
+                Console.WriteLine(MsgError);
+            }
+            Console.WriteLine();
+
+            Console.WriteLine(MsgResult, WhichIsBigger(numOne, numTwo, numThree));
         }
 
-        public static bool IsInRange(int numberInput)
+        public static int WhichIsBigger(int numOne, int numTwo, int numThree)
         {
-            const int MaxRange = 100;
-            const int MinRange = 5;
+            int biggestNumber = 0;
 
-            return numberInput <= MaxRange && numberInput >= MinRange;
+            if (numOne > numTwo && numOne > numThree)
+            {
+                biggestNumber = numOne;
+            } 
+            else if (numTwo > numOne && numTwo > numThree)
+            {
+                biggestNumber = numTwo;
+            }
+            else
+            {
+                biggestNumber = numThree;
+            }
+
+            return biggestNumber;
         }
-
     }
 }
